@@ -49,33 +49,32 @@ def create_huffman_tree(queue): #This metod creates the Huffman tree based on th
 
         new_node = Node(freq=node1.freq + node2.freq, symbol=node1.symbol + node2.symbol)
 
-        if len(new_node.symbol) == 3  and node1.freq == node2.freq:
-            new_node.left = node2
-            new_node.right = node1
-        else:
-            new_node.left = node1
-            new_node.right = node2
+        new_node.left = node1
+        new_node.right = node2
 
         heapq.heappush(queue, new_node)
-        heapq.heapify(queue)
 
     return queue[0]
 
 
-def coding(letter, node, binString = ''):
-    d = dict()
-    if node.symbol == letter:
-        return {letter: binString}
-
-    if node.left.symbol == letter:
-        d.update(coding(letter, node.left, binString + '0'))
-        return d
+def coding(letter, node, code = ''):
+    if node is None:
+        return False
     
-    d.update(coding(letter, node.right, binString + '1'))
-    return d
+    if node.symbol == letter:
+        return code
+    
+    if node.left and letter in node.left.symbol:
+        result = coding(letter, node.left, code + '0')
+        if result:
+            return result
 
+    if node.right and letter in node.right.symbol:
+        result = coding(letter, node.right, code + '1')
+        if result:
+            return result
 
-
+    return False
 
 class HuffmanCode:  #The HuffmanCode class contains the Huffman coding algorithm. The class is initialized with a word, and the algorithm creates a dictionary of the word's characters and their frequencies.
     def __init__(self, word):
@@ -84,45 +83,31 @@ class HuffmanCode:  #The HuffmanCode class contains the Huffman coding algorithm
         self.queue = create_queue(self.dict)
         self.huffman_tree = create_huffman_tree(self.queue)
 
-    def alphabet(self):
-        alphabet = {}
-
-        for i in self.word:
-            if i in alphabet:
-                continue
-
-            alphabet[i] = coding(i, self.huffman_tree)[i]
-
-        return alphabet
 
     def tree(self):
         return self.huffman_tree
     
-    def q(self):
-        return self.queue()
-    
-    def d(self):
-        return self.dict()
-    
-    def coding(self):
-        code = []
-
-        alphabet = self.alphabet()
+    def code(self):
+        result = []
 
         for i in self.word:
-            code.append(alphabet[i])
+            result.append(coding(i, self.huffman_tree))
 
-        return code
+        return result
 
-class HuffmanDeCode:
-    def __init__(self, code:list, alphabet:dict):
-        self.code = code
-        self.alphabet = {v: k for k, v in alphabet.items()}
 
-    def decoding(self):
-        decode = ''
+def decoding(code, tree: Node):
+    decode = ''
 
-        for i in self.code:
-            decode += self.alphabet[i]
+    for i in code:
+        node = tree
+        for j in i:
+            if j == '1':
+                node = node.right
+            
+            if j ==  '0':
+                node = node.left
 
-        return decode
+        decode += node.symbol
+
+    return decode
