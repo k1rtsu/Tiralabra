@@ -29,6 +29,20 @@ def coding(w: str):
     return compressed
 
 
-s = 'ABRACADABRA'
+def decoding(code: list):
+    dicttionary = {}
+    decompressed = ''
 
-print(coding(s))
+    dict_index = 1
+    for i in code:
+        if i[0] == 0:
+            dicttionary[dict_index] = i[1]
+            decompressed += i[1]
+            dict_index += 1
+
+        else:
+            decompressed += dicttionary[i[0]] + i[1]
+            dicttionary[dict_index] = dicttionary[i[0]] + i[1]
+            dict_index += 1
+
+    return decompressed

@@ -12,7 +12,7 @@ def tree_out(tree, level=0):
         tree_out(tree.left, level + 1)
         tree_out(tree.right, level + 1)
 
-s = 'Huffaminen algoritmi toimii!!!'
+s = 'ABRACADABRA'
 
 sana = HuffmanCode(s)
 

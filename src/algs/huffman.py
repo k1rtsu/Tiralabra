@@ -60,10 +60,10 @@ def create_huffman_tree(queue): #This metod creates the Huffman tree based on th
 def coding(letter, node, code = ''):
     if node is None:
         return False
-    
+ 
     if node.symbol == letter:
         return code
-    
+ 
     if node.left and letter in node.left.symbol:
         result = coding(letter, node.left, code + '0')
         if result:
@@ -86,7 +86,7 @@ class HuffmanCode:  #The HuffmanCode class contains the Huffman coding algorithm
 
     def tree(self):
         return self.huffman_tree
-    
+ 
     def code(self):
         result = []
 
@@ -104,7 +104,7 @@ def decoding(code, tree: Node):
         for j in i:
             if j == '1':
                 node = node.right
-            
+          
             if j ==  '0':
                 node = node.left
 
