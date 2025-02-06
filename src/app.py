@@ -8,9 +8,9 @@ from algs.huffman import HuffmanCode, decoding
 
 def tree_out(tree, level=0):
     if tree is not None:
-        print("   " * level + f"{tree.symbol}::{tree.freq}")  # Tulostetaan solmu sisennyksellä
-        tree_out(tree.left, level + 1)  # Käydään vasen haara läpi
-        tree_out(tree.right, level + 1)  # Käydään oikea haara läpi
+        print("   " * level + f"{tree.symbol}::{tree.freq}")
+        tree_out(tree.left, level + 1)
+        tree_out(tree.right, level + 1)
 
 s = 'Huffaminen algoritmi toimii!!!'
 

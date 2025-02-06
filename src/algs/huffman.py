@@ -12,10 +12,10 @@ class Node:  #Nodes are required to construct the Huffman tree. A Node object co
     def __lt__(self, other):
         if self.freq != other.freq:
             return self.freq < other.freq
-        
+      
 
         return len(self.symbol) > len(other.symbol)
-    
+ 
     def __str__(self):
         return f"{self.symbol}::{self.freq}"
 
