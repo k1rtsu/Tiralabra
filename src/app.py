@@ -1,7 +1,6 @@
 import sys
 import os
 
-# Lisää 'src' hakupolkuun
 sys.path.append(os.path.abspath("src"))
 
 from algs.huffman import HuffmanCode, decoding
