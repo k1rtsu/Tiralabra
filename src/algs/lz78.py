@@ -46,3 +46,6 @@ def decoding(code: list):
             dict_index += 1
 
     return decompressed
+
+
+print(coding('abracadabra'))
