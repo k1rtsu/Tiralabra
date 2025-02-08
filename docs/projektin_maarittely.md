@@ -1,5 +1,5 @@
 ## Projektin määrittely
-Tämä aineopintojen harjoitustyö käsittelee tiedonpakkausta. Työssäni vertailen Lempel-Ziv:n LZ77-algoritmia ja Huffman-koodausta tekstien pakkaamisessa. Ohjelma saa syötteeksi tekstin, jonka se pakkaa ja purkaa kahdella edellä mainitulla menetelmällä. Tämän jälkeen tiedonpakkausmenetelmiä vertaillaan keskenään.
+Tämä aineopintojen harjoitustyö käsittelee tiedonpakkausta. Työssäni vertailen Lempel-Ziv:n LZ78-algoritmia ja Huffman-koodausta tekstien pakkaamisessa. Ohjelma saa syötteeksi tekstin, jonka se pakkaa ja purkaa kahdella edellä mainitulla menetelmällä. Tämän jälkeen tiedonpakkausmenetelmiä vertaillaan keskenään.
 
 Työni tavoitteena on tutkia algoritmien tehokkuutta ja toimivuutta erityyppisten tekstien pakkaamisessa.
 
