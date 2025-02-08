@@ -8,3 +8,5 @@
 [Vikko 2](./docs/viikko2raportti.md)
 
 [Vikko 3](./docs/viikko3raportti.md)
+
+[Vikko 4](./docs/viikko4raportti.md)
