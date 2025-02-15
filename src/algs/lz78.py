@@ -3,6 +3,8 @@
 # It is also efficient because it does not require a separate dictionary; instead, it creates the dictionary while compressing the data.
 
 def coding(w: str):
+    if w == '':
+        return []
     dictionary = {}
     compressed = []
 
@@ -30,6 +32,8 @@ def coding(w: str):
 
 
 def decoding(code: list):
+    if code == []:
+        return ''
     dicttionary = {}
     decompressed = ''
 

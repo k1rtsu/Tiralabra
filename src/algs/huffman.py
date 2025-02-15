@@ -54,7 +54,11 @@ def create_huffman_tree(queue): #This metod creates the Huffman tree based on th
 
         heapq.heappush(queue, new_node)
 
-    return queue[0]
+    if len(queue) > 0:
+        return queue[0]
+    
+    else:
+        return queue
 
 
 def coding(letter, node, code = ''):
@@ -97,6 +101,8 @@ class HuffmanCode:  #The HuffmanCode class contains the Huffman coding algorithm
 
 
 def decoding(code, tree: Node):
+    if code == []:
+        return ''
     decode = ''
 
     for i in code:
