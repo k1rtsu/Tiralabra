@@ -20,3 +20,10 @@ Minulla on myös yksi kysymys:
 En oikein keksi muita tapoja testata algoritmejani kuin yksikkötestit ja "päästä päähän" -testit tiedostoilla. 
 Riittävätkö nämä testit vitosen arvosanaan, vai tulisiko projektiani testata vielä jollakin muulla tavalla? Jos kyllä, 
 voisitko ehdottaa sopivan testausmenetelmän?
+
+| Tehtävä           | Tunnit |
+|-------------------|--------|
+| Koodaus          | 5h     |
+| Vertaisarviointi | 2h     |
+| Dokumentaatio    | 1h     |
+| **Yhteensä**     | **8h** |
