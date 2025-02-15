@@ -1,3 +1,5 @@
+Viikko 5
+
 Tällä viikolla olen hieman laajentanut projektin toiminnallisuutta – nyt algoritmit voivat käsitellä myös tiedostojen 
 pakkaamista. Tämän seurauksena laajensin myös testejä. Projekti testataan suurilla, pienillä, tyhjillä ja täysin 
 toistumattomilla teksteillä. Testin aluksi tiedosto pakataan koodimuotoon, jonka jälkeen se dekoodataan takaisin 
