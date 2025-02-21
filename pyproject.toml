@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.13"
 pytest = "^8.3.4"
 coverage = "^7.6.12"
+bitarray = "^3.0.0"
+black = "^25.1.0"
 
 
 [tool.poetry.group.dev.dependencies]

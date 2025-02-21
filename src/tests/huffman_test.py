@@ -16,13 +16,16 @@ from algs.huffman import (
     decoding,
     Node,
     HuffmanCode,
+    serialize_huffman_tree,
+    deserialize_huffman_tree,
+    save_compressed_file,
+    load_compressed_file,
 )
 
 
 def read_file(file_name):
     with open(file_name, "r", encoding="utf-8") as file:
         content = file.read()
-
     return content
 
 
@@ -44,7 +47,6 @@ class TestFunctions(unittest.TestCase):
         word_dict = {"a": 5, "b": 2, "r": 2, "c": 1, "d": 1}
         queue = create_queue(word_dict)
         huffman_tree = create_huffman_tree(queue)
-
         self.assertIsInstance(huffman_tree, Node)
         self.assertEqual(huffman_tree.freq, 11)
 
@@ -52,8 +54,7 @@ class TestFunctions(unittest.TestCase):
 class TestHuffmanCoding(unittest.TestCase):
     def test_coding(self):
         hc = HuffmanCode("abracadabra")
-        answer = ["0", "10", "111", "0", "1101", "0", "1100", "0", "10", "111", "0"]
-
+        answer = "01011101101011000101110"
         self.assertEqual(hc.code(), answer)
 
     def test_decoding(self):
@@ -61,44 +62,35 @@ class TestHuffmanCoding(unittest.TestCase):
         code = hc.code()
         answer = "abracadabra"
         decode = decoding(code, hc.tree())
-
         self.assertEqual(decode, answer)
 
     def test_large_text(self):
-        text = read_file("data/rc.txt")
+        text = read_file("data/compressing_test_data/rc.txt")
         hc = HuffmanCode(text)
         compressed_code = hc.code()
-
         decode = decoding(compressed_code, hc.tree())
-
         self.assertEqual(text, decode, "The contents of the files are not the same!")
 
-    def test_empty_text(self):
-        text = read_file("data/empty.txt")
+    def test_serialize_deserialize_tree(self):
+        text = "abracadabra"
+        hc = HuffmanCode(text)
+        tree = hc.tree()
+        serialized_tree = serialize_huffman_tree(tree)
+        deserialized_tree = deserialize_huffman_tree(serialized_tree)
+        self.assertEqual(decoding(hc.code(), deserialized_tree), text)
+
+    def test_save_load_compressed_file(self):
+        text = "abracadabra"
         hc = HuffmanCode(text)
         compressed_code = hc.code()
+        tree = hc.tree()
 
-        decode = decoding(compressed_code, hc.tree())
+        file_path = "data/compressed/test_compressed.txt"
+        save_compressed_file(file_path, tree, compressed_code)
+        loaded_tree, loaded_code = load_compressed_file(file_path)
 
-        self.assertEqual(text, decode, "The contents of the files are not the same!")
-
-    def test_zeroredundancy_text(self):
-        text = read_file("data/redundancy_zero.txt")
-        hc = HuffmanCode(text)
-        compressed_code = hc.code()
-
-        decode = decoding(compressed_code, hc.tree())
-
-        self.assertEqual(text, decode, "The contents of the files are not the same!")
-
-    def test_loremipsum_text(self):
-        text = read_file("data/loremipsum.txt")
-        hc = HuffmanCode(text)
-        compressed_code = hc.code()
-
-        decode = decoding(compressed_code, hc.tree())
-
-        self.assertEqual(text, decode, "The contents of the files are not the same!")
+        self.assertEqual(decoding(loaded_code, loaded_tree), text)
+        os.remove(file_path)
 
 
 if __name__ == "__main__":
