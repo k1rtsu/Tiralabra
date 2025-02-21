@@ -2,6 +2,7 @@
 
 ## Dokumentaatio
 [Määrittelydokumentti](./docs/projektin_maarittely.md)
+[Testausdokumentti](./docs/projektin_testausdokumentti.md)
 ## Viikkoraportit
 [Vikko 1](./docs/viikko1raportti.md)
 
@@ -13,4 +14,4 @@
 
 [Vikko 5](./docs/viikko5raportti.md)
 
-[Vikko 5](./docs/viikko6raportti.md)
+[Vikko 6](./docs/viikko6raportti.md)
