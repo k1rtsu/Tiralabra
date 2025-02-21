@@ -12,3 +12,5 @@
 [Vikko 4](./docs/viikko4raportti.md)
 
 [Vikko 5](./docs/viikko5raportti.md)
+
+[Vikko 5](./docs/viikko6raportti.md)
