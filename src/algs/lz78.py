@@ -69,7 +69,6 @@ def save_compressed(filename: str, compressed_data: list):
     max_index = max(idx for idx, _ in compressed_data)
     max_char = max(ord(char) for _, char in compressed_data)
 
-    # Valitse indeksille bittimäärä
     if max_index < 16:
         index_bits = 4
     elif max_index < 256:
@@ -79,7 +78,6 @@ def save_compressed(filename: str, compressed_data: list):
     else:
         index_bits = 32
 
-    # Valitse merkille bittimäärä
     if max_char < 256:
         char_bits = 8
     elif max_char < 65536:
@@ -90,7 +88,7 @@ def save_compressed(filename: str, compressed_data: list):
     with open(filename, "wb") as f:
         f.write(
             struct.pack("BB", index_bits, char_bits)
-        )  # Tallennetaan bittimäärät 1 tavuna kumpikin
+        )
         bit_stream = bitarray()
 
         for index, char in compressed_data:
@@ -110,15 +108,15 @@ def load_compressed(filename: str):
     with open(filename, "rb") as f:
         index_bits, char_bits = struct.unpack(
             "BB", f.read(2)
-        )  # Luetaan indeksin ja merkin bittimäärät
+        )
         bit_stream = bitarray()
         bit_stream.fromfile(f)
         bits = bit_stream.to01()
 
-        chunk_size = index_bits + char_bits  # Indeksi + merkki
+        chunk_size = index_bits + char_bits
 
         if len(bits) % chunk_size != 0:
-            raise ValueError("Tiedoston koko ei täsmää odotettuun bittijakoon")
+                bits = bits[:-4]
 
         for i in range(0, len(bits), chunk_size):
             index = int(bits[i : i + index_bits], 2)

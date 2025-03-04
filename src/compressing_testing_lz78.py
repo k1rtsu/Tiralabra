@@ -15,11 +15,6 @@ def read_file(file_name):
     return content
 
 
-def write_file(filename, data):
-    with open(filename, "w", encoding="utf-8") as file:
-        file.write(data)
-
-
 for f in os.listdir("data/compressing_test_data"):
     print(f)
     text = read_file(f"data/compressing_test_data/{f}")
