@@ -48,5 +48,9 @@ poetry run python3 src/compressing_testing_lz78.py
 
 ## Tehokkuustestaus
 
-TODO
+Tehokkuustestaus suoritetaan samalla datalla kuin kompressointitestaus. Tehokkuustestit mittaavat molempien algoritmien suoritusaikaa eri vaiheissa: koodauksessa, datan lataamisessa bittitiedostoon, datan haussa bittitiedostosta ja dekoodauksessa. Lisäksi testit tarkistavat, että dekoodattu syöte vastaa alkuperäistä dataa. 
 
+Tehokkuustestin tulokset voi nähdä suorittamalla seuraavan komennon projektin juurikansiosta: 
+```sh
+poetry run python3 src/performance_testing.py 
+```
