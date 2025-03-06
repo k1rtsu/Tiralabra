@@ -5,6 +5,8 @@
 
 [Testausdokumentti](./docs/projektin_testausdokumentti.md)
 
+[Toteutusdokumentti](./docs/projektin_toteutusdokumentti.md)
+
 
 ## Viikkoraportit
 [Vikko 1](./docs/viikko1raportti.md)
