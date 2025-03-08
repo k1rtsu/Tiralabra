@@ -1,16 +1,15 @@
 import sys
 import os
-from time import time
-
-sys.path.append(os.path.abspath("src"))
-sys.path.append(os.path.abspath("data"))
-
 from algs.huffman import (
     HuffmanCode,
     decoding,
     save_compressed_file,
     load_compressed_file,
 )
+
+
+sys.path.append(os.path.abspath("src"))
+sys.path.append(os.path.abspath("data"))
 
 
 def read_file(file_name):
@@ -25,10 +24,10 @@ def write_file(filename, data):
         file.write(data)
 
 
-for f in os.listdir("data/compressing_test_data"):
+for f in os.listdir("data/test_data"):
     print(f)
-    text = read_file(f"data/compressing_test_data/{f}")
-    size = os.path.getsize(f"data/compressing_test_data/{f}")
+    text = read_file(f"data/test_data/{f}")
+    size = os.path.getsize(f"data/test_data/{f}")
 
     hc = HuffmanCode(text)
     save_compressed_file("test.bin", hc.tree(), hc.code())

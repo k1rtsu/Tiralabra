@@ -1,12 +1,5 @@
 import sys
 import os
-import ast
-
-sys.path.append(os.path.abspath("src"))
-sys.path.append(os.path.abspath("data"))
-sys.path.append(os.path.abspath("compressed"))
-sys.path.append(os.path.abspath("decompressed"))
-
 from algs.huffman import (
     HuffmanCode,
     decoding,
@@ -14,6 +7,11 @@ from algs.huffman import (
     load_compressed_file,
 )
 import algs.lz78
+
+sys.path.append(os.path.abspath("src"))
+sys.path.append(os.path.abspath("data"))
+sys.path.append(os.path.abspath("compressed"))
+sys.path.append(os.path.abspath("decompressed"))
 
 
 def tree_out(tree, level=0):
@@ -61,17 +59,11 @@ if type_of_input == "w":
         print(f"Decode: {algs.lz78.decoding(lz)}")
 
 if type_of_input == "f":
-    print(
-        [
-            file
-            for file in os.listdir("data/compressing_test_data")
-            if file.endswith(".txt")
-        ]
-    )
+    print([file for file in os.listdir("data/test_data") if file.endswith(".txt")])
     file = input("chose one of the files you want to compress and write it there: ")
 
     if algoritm == "a":
-        hc = HuffmanCode(read_file(f"data/compressing_test_data/{file}"))
+        hc = HuffmanCode(read_file(f"data/test_data/{file}"))
         code = hc.code()
         tree = hc.tree()
         tree_input = input(
@@ -84,7 +76,7 @@ if type_of_input == "f":
         save_compressed_file("data/compressed/yourfile.bin", tree, code)
 
     if algoritm == "b":
-        lz = algs.lz78.coding(read_file(f"data/compressing_test_data/{file}"))
+        lz = algs.lz78.coding(read_file(f"data/test_data/{file}"))
         algs.lz78.save_compressed("data/compressed/yourfile.bin", lz)
 
     print("You can find your code in compressed folde")

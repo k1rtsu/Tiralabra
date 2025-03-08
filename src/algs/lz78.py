@@ -1,8 +1,12 @@
-# The LZ78 algorithm is a data compression algorithm developed in 1978.
-# The algorithm compresses data by replacing repeated strings with shorter symbols.
-# It is also efficient because it does not require a separate dictionary; instead, it creates the dictionary while compressing the data.
 import struct
 from bitarray import bitarray
+
+"""
+LZ78 Data Compression Algorithm
+
+This module implements the LZ78 compression and decompression algorithms,
+as well as functions to save and load compressed data efficiently.
+"""
 
 
 def coding(w: str):
@@ -10,21 +14,20 @@ def coding(w: str):
     Compresses the input string using the LZ78 algorithm.
     Returns a list of (index, character) tuples.
     """
-    if w == "":
+    if not w:
         return []
     dictionary = {}
     compressed = []
 
     dict_index = 1
     char = ""
-    for i in range(len(w)):
-        if char + w[i] in dictionary:
-            char += w[i]
-
+    for c in w:
+        if char + c in dictionary:
+            char += c
         else:
             index = dictionary.get(char, 0)
-            compressed.append((index, w[i]))
-            dictionary[char + w[i]] = dict_index
+            compressed.append((index, c))
+            dictionary[char + c] = dict_index
             dict_index += 1
             char = ""
 
@@ -41,22 +44,20 @@ def decoding(code: list):
     """
     Decompresses a list of (index, character) tuples to reconstruct the original string.
     """
-    if code == []:
+    if not code:
         return ""
-    dicttionary = {}
+    dictionary = {}
     decompressed = ""
 
     dict_index = 1
-    for i in code:
-        if i[0] == 0:
-            dicttionary[dict_index] = i[1]
-            decompressed += i[1]
-            dict_index += 1
-
+    for index, char in code:
+        if index == 0:
+            dictionary[dict_index] = char
+            decompressed += char
         else:
-            decompressed += dicttionary[i[0]] + i[1]
-            dicttionary[dict_index] = dicttionary[i[0]] + i[1]
-            dict_index += 1
+            decompressed += dictionary[index] + char
+            dictionary[dict_index] = dictionary[index] + char
+        dict_index += 1
 
     return decompressed
 
@@ -65,30 +66,19 @@ def save_compressed(filename: str, compressed_data: list):
     """
     Saves the compressed data to a binary file with optimized bit lengths.
     """
-
     max_index = max(idx for idx, _ in compressed_data)
     max_char = max(ord(char) for _, char in compressed_data)
 
-    if max_index < 16:
-        index_bits = 4
-    elif max_index < 256:
-        index_bits = 8
-    elif max_index < 65536:
-        index_bits = 16
-    else:
-        index_bits = 32
+    index_bits = (
+        4
+        if max_index < 16
+        else 8 if max_index < 256 else 16 if max_index < 65536 else 32
+    )
 
-    if max_char < 256:
-        char_bits = 8
-    elif max_char < 65536:
-        char_bits = 16
-    else:
-        char_bits = 32
+    char_bits = 8 if max_char < 256 else 16 if max_char < 65536 else 32
 
     with open(filename, "wb") as f:
-        f.write(
-            struct.pack("BB", index_bits, char_bits)
-        )
+        f.write(struct.pack("BB", index_bits, char_bits))
         bit_stream = bitarray()
 
         for index, char in compressed_data:
@@ -106,17 +96,13 @@ def load_compressed(filename: str):
     compressed_data = []
 
     with open(filename, "rb") as f:
-        index_bits, char_bits = struct.unpack(
-            "BB", f.read(2)
-        )
+        index_bits, char_bits = struct.unpack("BB", f.read(2))
         bit_stream = bitarray()
         bit_stream.fromfile(f)
         bits = bit_stream.to01()
 
         chunk_size = index_bits + char_bits
-
-        if len(bits) % chunk_size != 0:
-                bits = bits[:-4]
+        bits = bits[: len(bits) - (len(bits) % chunk_size)]
 
         for i in range(0, len(bits), chunk_size):
             index = int(bits[i : i + index_bits], 2)

@@ -1,9 +1,6 @@
 import unittest
 import sys
 import os
-import heapq
-import ast
-
 sys.path.append(os.path.abspath("src"))
 sys.path.append(os.path.abspath("data"))
 sys.path.append(os.path.abspath("compressed"))
@@ -21,6 +18,7 @@ from algs.huffman import (
     save_compressed_file,
     load_compressed_file,
 )
+
 
 
 def read_file(file_name):
@@ -65,7 +63,7 @@ class TestHuffmanCoding(unittest.TestCase):
         self.assertEqual(decode, answer)
 
     def test_large_text(self):
-        text = read_file("data/compressing_test_data/rc.txt")
+        text = read_file("data/test_data/rc.txt")
         hc = HuffmanCode(text)
         compressed_code = hc.code()
         decode = decoding(compressed_code, hc.tree())

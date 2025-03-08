@@ -28,19 +28,19 @@ class TestLZ78(unittest.TestCase):
         self.assertEqual(decode, word)
 
     def test_large_text(self):
-        text = read_file("data/compressing_test_data/rc.txt")
+        text = read_file("data/test_data/rc.txt")
         compressed_code = coding(text)
         decode = decoding(compressed_code)
         self.assertEqual(text, decode, "The contents of the data are not the same!")
 
     def test_zeroredundancy_text(self):
-        text = read_file("data/compressing_test_data/redundancy_zero.txt")
+        text = read_file("data/test_data/redundancy_zero.txt")
         compressed_code = coding(text)
         decode = decoding(compressed_code)
         self.assertEqual(text, decode, "The contents of the data are not the same!")
 
     def test_loremipsum_text(self):
-        text = read_file("data/compressing_test_data/loremipsum.txt")
+        text = read_file("data/test_data/loremipsum.txt")
         compressed_code = coding(text)
         decode = decoding(compressed_code)
         self.assertEqual(text, decode, "The contents of the data are not the same!")
@@ -55,7 +55,7 @@ class TestLZ78(unittest.TestCase):
         os.remove("test_compress.bin")  # Cleanup after test
 
     def test_save_and_load_large_text_from_file(self):
-        text = read_file("data/compressing_test_data/rc.txt")
+        text = read_file("data/test_data/rc.txt")
         compressed_code = coding(text)
         filename = "test_large_compressed.bin"
 
