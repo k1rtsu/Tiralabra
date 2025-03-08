@@ -17,3 +17,9 @@ https://en.wikipedia.org/wiki/Huffman_coding
 https://en.wikipedia.org/wiki/Data_compression
 
 https://en.wikipedia.org/wiki/LZ77_and_LZ78
+
+https://tira.mooc.fi/kevat-2024/
+
+https://www.geeksforgeeks.org/preorder-traversal-of-binary-tree/
+
+https://pypi.org/project/bitarray/
