@@ -65,3 +65,17 @@ Huffmanin koodaus ja LZ78 ovat kaksi yleisesti käytettyä tiedonpakkausalgoritm
 - **LZ78** puolestaan luo dynaamisesti sanakirjan koodatessaan dataa, mikä mahdollistaa nopean pakkauksen ja purkamisen. Se tunnistaa toistuvia merkkijonoja tekstissä, mikä tekee siitä erityisen nopean, mutta tämä nopeus saattaa heikentää sen pakkaustehokkuutta verrattuna Huffmanin koodaukseen.  
 
 Molemmat algoritmit tarjoavat siis erilaisia ratkaisuja tiedonpakkaukseen riippuen käyttötarkoituksesta ja datan luonteesta.
+
+---
+
+## Projektin puutteet ja heikkoudet
+
+Projektin laadun ja tehokkuuden kannalta heikoimmat osat liittyvät bittitiedostojen pakkaamiseen ja avaamiseen. Tämä johtuu omasta epätietoisuudestani kyseisestä aiheesta. Uskon, että näissä kohdissa on runsaasti parannusmahdollisuuksia, jotka voivat parantaa ohjelman pakkaustehokkuutta ja lyhentää suoritusaikaa.
+
+---
+
+## Kielimallien käyttö
+
+Käytin kielimalleja projektin aikana asioiden selvittämiseen, esimerkiksi ymmärtääkseni, miksi jokin toimii tietyllä tavalla. En kuitenkaan käyttänyt kielimalleja koodin tuottamiseen.
+
+
