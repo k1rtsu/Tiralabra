@@ -46,3 +46,9 @@ Voit suorittaa kompressointitestit komennoilla:
    poetry run python3 src/compressing_testing_huffman.py
    poetry run python3 src/compressing_testing_lz78.py
    ```
+
+Voit suorittaa tehokkuustestit komennolla:
+
+   ```bash
+   poetry run src/performance_testing.py
+   ```
